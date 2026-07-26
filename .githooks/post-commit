@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# Keep committed work synchronized without ever deleting a local commit.
+if git remote get-url origin >/dev/null 2>&1; then
+  git push --quiet origin HEAD || {
+    echo "Auto-sync: push was not accepted; the commit remains local." >&2
+    exit 0
+  }
+fi
